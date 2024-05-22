@@ -1,8 +1,0 @@
-[submodule "Vendor/imgui"]
-	path = Vendor/imgui
-	url = https://github.com/ocornut/imgui.git
-	branch = docking
-
-[submodule "Engine/Vendor/rapidjson"]
-	path = Engine/Vendor/rapidjson
-	url = git@github.com:Tencent/rapidjson.git
