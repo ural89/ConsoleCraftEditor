@@ -1,0 +1,10 @@
+#include "{GameObjectName}.h"
+void {GameObjectName}::Init()
+{
+}
+
+void {GameObjectName}::Update(float deltaTime)
+{
+}
+
+

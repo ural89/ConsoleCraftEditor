@@ -1,0 +1,21 @@
+#include "{SceneName}.h"
+{SceneName}::
+~{SceneName}()
+{
+
+}
+void {SceneName}::Init()
+{
+    Scene::Init();
+    CreateGameObjectsFromSceneData("{SceneName}.scene");
+}
+
+void {SceneName}::Start()
+{
+    Scene::Start();
+}
+
+void {SceneName}::Update(float deltaTime)
+{
+    Scene::Update(deltaTime);
+}

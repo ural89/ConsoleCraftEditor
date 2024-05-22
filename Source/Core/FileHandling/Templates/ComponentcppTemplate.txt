@@ -1,0 +1,15 @@
+#include "{ComponentName}.h"
+#include "Core/GameObject.h"
+{ComponentName}::{ComponentName}(GameObject &ownerGameObject) : Component(ownerGameObject)
+{
+
+}
+void {ComponentName}::Init() 
+{
+}
+
+void {ComponentName}::Update(float deltaTime)
+{
+}
+
+
