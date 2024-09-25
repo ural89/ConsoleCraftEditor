@@ -16,13 +16,13 @@ void InEditorRenderer::Render(SceneData &sceneData)
     int cameraOffsetX = 0;
     int cameraOffsetY = 0;
 
+    RenderTemplates(sceneData);
     if (sceneData.GameObjectDatas.size() > 0)
     {
         for (auto it = sceneData.GameObjectDatas.begin(); it != sceneData.GameObjectDatas.end(); ++it)
         {
             if ((*it)->isTemplate)
             {
-                RenderTemplates(*it);
                 continue;
             }
             if ((*it) == nullptr)
@@ -81,12 +81,41 @@ void InEditorRenderer::Render(SceneData &sceneData)
     }
 }
 
-void InEditorRenderer::RenderTemplates(GameObjectData *gameObjectData)
+void InEditorRenderer::RenderTemplates(SceneData &sceneData)
 {
     ImGui::Begin("Templates");
-    if (gameObjectData != nullptr)
+
+    for (size_t i = 0; i < sceneData.GameObjectDatas.size(); ++i)
     {
-        ImGui::Text("%s", gameObjectData->name.c_str());
+        GameObjectData *gameObjectData = sceneData.GameObjectDatas[i];
+
+        if (gameObjectData && gameObjectData->isTemplate)
+        {
+            ImGui::Text("%s", gameObjectData->name.c_str());
+            ImGui::SameLine();
+
+            std::string buttonId = "AddToScene###Add" + gameObjectData->name;
+            if (ImGui::Button(buttonId.c_str()))
+            {
+                gameObjectData->isTemplate = false;
+            }
+            ImGui::SameLine();
+            std::string cloneButtonId = "CloneGameObject###Clone" + gameObjectData->name;
+            if (ImGui::Button(cloneButtonId.c_str()))
+            {
+                GameObjectData *god = new GameObjectData{
+                    0,
+                    gameObjectData->name,
+                    gameObjectData->script,
+                    gameObjectData->position,
+                    gameObjectData->symbol,
+                    gameObjectData->spriteWidth,
+                    gameObjectData->sprite,
+                    gameObjectData->components};
+                sceneData.GameObjectDatas.push_back(god);
+                god->isTemplate = false;
+            }
+        }
     }
 
     ImGui::End();
@@ -236,8 +265,7 @@ void InEditorRenderer::Update(SceneData &sceneData)
 
                 // selectedGameObjectData = nullptr;
                 // gameObjectPropertiesRenderer.SelectGameObject(nullptr);
-              
-              
+
                 for (auto it = sceneData.GameObjectDatas.begin(); it != sceneData.GameObjectDatas.end(); ++it)
                 {
                     if ((*it) == nullptr)
@@ -259,7 +287,7 @@ void InEditorRenderer::Update(SceneData &sceneData)
 
 void InEditorRenderer::ClearSelection()
 {
-    gameObjectPropertiesRenderer.SelectGameObject(nullptr); 
+    gameObjectPropertiesRenderer.SelectGameObject(nullptr);
 }
 
 void InEditorRenderer::SetGameObjectScripts(std::vector<std::string> gameObjectScripts)

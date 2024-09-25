@@ -44,7 +44,7 @@ public:
 
         if (!std::filesystem::exists(gameObjectScriptsFilePath))
         {
-            //  std::cerr << "GameObjectScripts.json does not exist for project: " << projectName << std::endl;
+            std::cerr << "GameObjectScripts.json does not exist for project: " << projectName << std::endl;
             return scriptNames;
         }
 

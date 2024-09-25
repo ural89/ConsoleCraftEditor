@@ -2,7 +2,6 @@
 #include <vector>
 #include "../CoreStructs/Vector.h"
 
-
 struct ComponentData
 {
     std::string name;
@@ -17,12 +16,11 @@ struct GameObjectData
     int spriteWidth;
     std::vector<int> sprite;
     std::vector<ComponentData> components;
-    int parentId= -1;
+    int parentId = -1;
     bool isTemplate = false;
-
 };
 
 struct SceneData
 {
-    std::vector<GameObjectData*> GameObjectDatas; 
+    std::vector<GameObjectData *> GameObjectDatas;
 };

@@ -325,6 +325,7 @@ void Window::LoadSelectedProject(std::string &projectNameToLoad)
     // UpdateFileLists();
     LoadScene();
     CreateScene();
+    UpdateScriptList();
 }
 void Window::RenderScene(SceneData &sceneData)
 {
