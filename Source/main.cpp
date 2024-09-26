@@ -26,7 +26,6 @@
 // Main code
 int main(int, char**)
 {
-    Window imguiWindow;
     // Setup SDL
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) != 0)
     {
@@ -130,6 +129,7 @@ int main(int, char**)
 
     // Main loop
     bool done = false;
+    Window imguiWindow;
 #ifdef __EMSCRIPTEN__
     // For an Emscripten build we are disabling file-system access, so let's not attempt to do a fopen() of the imgui.ini file.
     // You may manually call LoadIniSettingsFromMemory() to load settings from your own storage.

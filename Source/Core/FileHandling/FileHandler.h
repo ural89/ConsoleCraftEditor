@@ -15,7 +15,7 @@ public:
     bool CreateDirectory(const std::string &path);
     bool OpenVisualStudioCode(const std::string &path);
     void BuildAndRun(const std::string &path, const std::string &projectName);
-    void GetFiles(std::vector<std::string> &directories, std::vector<std::string> &files);
+    bool GetFiles(std::vector<std::string> &directories, std::vector<std::string> &files);
     void WriteToFile(const std::string &filename, const std::string &projectName, const std::string &json);
 
 private:

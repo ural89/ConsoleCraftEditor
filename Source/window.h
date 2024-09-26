@@ -6,6 +6,7 @@
 #include "Core/FileHandling/GameObjectScriptCreator.h"
 #include "Core/FileHandling/FileHandler.h"
 #include "Core/InEditorRenderer.h"
+#include <filesystem>
 class Window
 {
 public:
@@ -36,11 +37,12 @@ private:
     void UpdateScriptList();
     void UpdateFileLists();
     void CreateGameObject(const std::string &gameObjectName, const std::string &scriptName, Vector2 position, std::string symbol, int spriteWidth, std::vector<int> &sprite);
+    void DeleteProject(const std::string& projectName);
 
 private:
     char projectNameText[32] = "NewProject";
     char projectName[32] = "NewProject";
-    char projectDirectory[256] = "/home/ural/Documents/Projects/";
+    std::string projectDirectory = ProjectManager::GetProjectDirectory();
     char gameObjectNameText[32] = "NewGameObject";
     char gameObjectScriptNameText[32] = "NewGameObjectScript";
     char componentScriptNameText[32] = "NewComponent";
@@ -84,10 +86,5 @@ private:
     }
 
 private:
-    // TODO: TEMP
-
-    //    / GameObjectData player = {0, "Player", "testScript", {5, 5}, {"*"}, {2}, {1, 1, 1, 1, 1, 1}, {ComponentData{"testComponent"}}};
-    //  GameObjectData enemy = {"Enemy", {14, 5}, {"*"}, {3}, {1,1,1,1,1,1}};
-
     SceneData sceneData;
 };

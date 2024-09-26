@@ -131,10 +131,13 @@ void FileHandler::BuildAndRun(const std::string &path, const std::string &projec
     }
 }
 
-void FileHandler::GetFiles(std::vector<std::string> &directories, std::vector<std::string> &files)
+bool FileHandler::GetFiles(std::vector<std::string> &directories, std::vector<std::string> &files)
 {
     std::filesystem::path projectsPath(ProjectManager::PROJECTS_DIR);
-
+    if(!std::filesystem::exists(projectsPath))
+    {
+        return false;
+    }
     for (const auto &entry : std::filesystem::recursive_directory_iterator(projectsPath))
     {
         if (std::filesystem::is_directory(entry.path()))
@@ -146,6 +149,7 @@ void FileHandler::GetFiles(std::vector<std::string> &directories, std::vector<st
             files.push_back(entry.path().string());
         }
     }
+    return true;
 }
 void FileHandler::WriteToFile(const std::string &filename, const std::string &projectName, const std::string &data)
 {

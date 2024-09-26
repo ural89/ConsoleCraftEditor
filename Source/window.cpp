@@ -4,10 +4,9 @@
 
 Window::Window()
 {
-    // sceneData.GameObjectDatas.push_back(&player);
     UpdateScriptList();
+    UpdateFileLists();
     gameObjectId = 0;
-    // UpdateFileLists();
 }
 
 Window::~Window()
@@ -24,9 +23,7 @@ void Window::Update()
 {
     UpdateDock();
     if (!hasProjectLoaded)
-    {
         RenderCreateProject();
-    }
     if (showProjectDirectory)
         RenderLoadProjectDirectoryTree();
     if (hasProjectLoaded)
@@ -59,7 +56,7 @@ void Window::RenderMainEditor()
     // {
 
     //     projectCreator.DeleteProjectFolder(projectName);
-    //     UpdateFileLists();
+    // UpdateFileLists();
     //     UpdateScriptList();
     // }
 
@@ -96,18 +93,19 @@ void Window::UpdateFileLists()
     directoriesList.clear();
 
     fileHandler.GetFiles(directoriesList, filesList);
-    for (auto &file : filesList)
-    {
-        // std::cout << file << '\n';
-    }
-    for (auto &directory : directoriesList)
-    {
-        // std::cout << directory << '\n';
-    }
+    // for (auto &file : filesList)
+    // {
+    //     // std::cout << file << '\n';
+    // }
+    // for (auto &directory : directoriesList)
+    // {
+    //     // std::cout << directory << '\n';
+    // }
 }
 void Window::RenderLoadProjectDirectoryTree()
 {
     ImGui::Begin("Project Files");
+    int startButtonId = 0;
 
     for (const auto &file : filesList)
     {
@@ -120,13 +118,19 @@ void Window::RenderLoadProjectDirectoryTree()
             ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.0f, 1.0f, 0.0f, 1.0f));
             ImGui::TreeNodeEx(fileName.c_str(), ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_Bullet);
             ImGui::PopStyleColor();
-
-            if (ImGui::IsItemClicked())
+            ImGui::SameLine();
+            if (ImGui::Button("Start")) //(ImGui::IsItemClicked())
             {
 
                 std::string projectNameToLoad = fileName.substr(0, fileName.find_last_of("."));
 
                 LoadSelectedProject(projectNameToLoad);
+            }
+            ImGui::SameLine();
+            if(ImGui::Button("Delete"))
+            {
+                std::string projectNameToDelete = fileName.substr(0, fileName.find_last_of("."));
+                DeleteProject(projectNameToDelete);
             }
             ImGui::TreePop(); // Pop for the file node
         }
@@ -289,8 +293,7 @@ void Window::RenderCreateProject()
     ImGui::Begin("CreateProject");
 
     ImGui::InputText("Project name", projectNameText, IM_ARRAYSIZE(projectNameText));
-    ImGui::InputText("ProjectDirectory", projectDirectory, 100);
-    ProjectManager::SetProjectDirectory(projectDirectory);
+
     if (ImGui::Button("Create Project"))
     {
 
@@ -308,9 +311,7 @@ void Window::RenderCreateProject()
     if (ImGui::Button("DeleteProject"))
     {
         // TODO: promt again!
-        projectCreator.DeleteProjectFolder(projectNameText);
-        UpdateFileLists();
-        UpdateScriptList();
+        DeleteProject(projectNameText);
     }
 
     ImGui::End();
@@ -356,6 +357,12 @@ void Window::CreateGameObject(const std::string &gameObjectName, const std::stri
                                                         spriteWidth,
                                                         sprite};
     sceneData.GameObjectDatas.push_back(gameObjectData);
+}
+void Window::DeleteProject(const std::string& projectNameToDelete)
+{
+    projectCreator.DeleteProjectFolder(projectNameToDelete);
+    UpdateFileLists();
+    UpdateScriptList();
 }
 void Window::UpdateDock()
 {
