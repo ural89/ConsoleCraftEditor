@@ -8,9 +8,8 @@ class GE_API GameObject
 {
 
 public:
-
 	int gameObjectId = 0;
-	GameObject(std::string&& name, class Scene &scene) : name(name), scene(scene){};
+	GameObject(std::string &&name, class Scene &scene) : name(name), scene(scene) {};
 	virtual ~GameObject()
 	{
 		for (auto &component : components)
@@ -42,13 +41,16 @@ public:
 	}
 	void AddComponent(Component *component)
 	{
-		components.push_back(component);
-		component->Init();
+		if (component)
+		{
+			components.push_back(component);
+			component->Init();
+		}
 	}
 	void SetRenderable(bool isRenderable)
 	{
 		this->isRenderable = isRenderable;
-		if(!isRenderable)
+		if (!isRenderable)
 		{
 			forceClearFromScreen = true;
 		}
@@ -68,14 +70,14 @@ public:
 		return nullptr;
 	}
 
-	//overrides
+	// overrides
 public:
-	virtual void Init(){};
-	virtual void Update(float deltaTime){};
-	virtual void OnCollided(GameObject &other){};
-	virtual void OnCollisionExit(GameObject &other){};
-	virtual void OnCollidedBorder(int border){};
-	virtual void OnDestroy(){};
+	virtual void Init() {};
+	virtual void Update(float deltaTime) {};
+	virtual void OnCollided(GameObject &other) {};
+	virtual void OnCollisionExit(GameObject &other) {};
+	virtual void OnCollidedBorder(int border) {};
+	virtual void OnDestroy() {};
 
 	void UpdateComponents(float deltaTime)
 	{
@@ -100,18 +102,19 @@ public:
 	}
 	bool operator!=(const GameObject &other) const
 	{
-		return this != &other; 
+		return this != &other;
 	}
-	protected:
-		std::vector<Component *> components;
-		Scene & scene;
+
+protected:
+	std::vector<Component *> components;
+	Scene &scene;
 #ifdef __GNUC__
-		int GREEN = 2;
-		int RED = 1;
-		int YELLOW = 3;
+	int GREEN = 2;
+	int RED = 1;
+	int YELLOW = 3;
 #else
-		int GREEN = 2;
-		int RED = 4;
-		int YELLOW = 1;
+	int GREEN = 2;
+	int RED = 4;
+	int YELLOW = 1;
 #endif
-	};
+};
