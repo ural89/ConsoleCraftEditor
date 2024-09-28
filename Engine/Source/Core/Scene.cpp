@@ -111,17 +111,17 @@ GameObject *Scene::CreateGameObjectFromTemplate(std::string gameObjectName)
 			// std::cin.get();
 			if (gameObject)
 			{
+				Vector2 position = Vector2(gameObjectData->position.X, gameObjectData->position.Y);
 				gameObject->gameObjectId = gameObjectData->id;
+				AddGameObject(gameObject, position);
 				componentFactory.RegisterAllComponents(*gameObject);
 				for (size_t i = 0; i < gameObjectData->components.size(); i++)
 				{
 					gameObject->AddComponent(componentFactory.Create(gameObjectData->components[i].name));
 				}
-				Vector2 position = Vector2(gameObjectData->position.X, gameObjectData->position.Y);
 
 				std::vector<std::vector<int>> sprite = SceneDataDeserializer::convertTo2D(gameObjectData->sprite, gameObjectData->spriteWidth); // convert from vector<vector> to 1d vector
 				gameObject->sprite = sprite;
-				AddGameObject(gameObject, position);
 				
 				return gameObject;
 			}
@@ -160,17 +160,17 @@ void Scene::CreateGameObjectsFromSceneData(const std::string &sceneName) // DONT
 			// std::cin.get();
 			if (gameObject)
 			{
+				Vector2 position = Vector2(gameObjectData->position.X, gameObjectData->position.Y);
+				AddGameObject(gameObject, position);
 				gameObject->gameObjectId = gameObjectData->id;
 				componentFactory.RegisterAllComponents(*gameObject);
 				for (size_t i = 0; i < gameObjectData->components.size(); i++)
 				{
 					gameObject->AddComponent(componentFactory.Create(gameObjectData->components[i].name));
 				}
-				Vector2 position = Vector2(gameObjectData->position.X, gameObjectData->position.Y);
 
 				std::vector<std::vector<int>> sprite = SceneDataDeserializer::convertTo2D(gameObjectData->sprite, gameObjectData->spriteWidth); // convert from vector<vector> to 1d vector
 				gameObject->sprite = sprite;
-				AddGameObject(gameObject, position);
 				createdGameObjects.push_back(gameObject);
 			}
 		}
