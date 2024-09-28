@@ -130,6 +130,7 @@ int main(int, char**)
     // Main loop
     bool done = false;
     Window imguiWindow;
+    io.IniFilename = "../imgui.ini";
 #ifdef __EMSCRIPTEN__
     // For an Emscripten build we are disabling file-system access, so let's not attempt to do a fopen() of the imgui.ini file.
     // You may manually call LoadIniSettingsFromMemory() to load settings from your own storage.
