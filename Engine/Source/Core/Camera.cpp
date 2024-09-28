@@ -16,13 +16,34 @@ void Camera::UpdateCamera(float deltaTime)
         ShakeCamera(deltaTime);
 }
 
+void Camera::MoveCameraRight()
+{
+    MoveCamera(Vector2(1, 0));
+}
+
+void Camera::MoveCameraLeft()
+{
+    MoveCamera(Vector2(-1, 0));
+}
+
+void Camera::MoveCameraUp()
+{
+    MoveCamera(Vector2(0, -1));
+}
+
+void Camera::MoveCameraDown()
+{
+    MoveCamera(Vector2(0, 1));
+}
+
 void Camera::MoveCamera(Vector2 moveAmount)
 {
     PreviousOffset = Vector2(offsetX + moveAmount.X, offsetY + moveAmount.Y).ToInt();
     offsetX += moveAmount.X;
     offsetY += moveAmount.Y;
-    int moveXDirection = (int)offsetX - (int)(offsetX + moveAmount.X);
-    int moveYDirection = (int)offsetY - (int)(offsetY + moveAmount.Y);
+    int moveXDirection = (int) offsetX - (int)(offsetX + moveAmount.X);
+    int moveYDirection = (int) offsetY - (int)(offsetY + moveAmount.Y);
+
     if(moveXDirection > 0) HasMovedDirection = RIGHTDIRECTION * moveAmount.Length();
     else if(moveXDirection < 0) HasMovedDirection = LEFTDIRECTION * moveAmount.Length();
     else if(moveYDirection > 0) HasMovedDirection = UPDIRECTION * moveAmount.Length();

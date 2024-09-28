@@ -11,7 +11,7 @@ void Rigidbody::Init()
 
   body = owner->GetCurrentScene().World->CreateBody(&bodyDef);
   b2PolygonShape dynamicBox;
-  dynamicBox.SetAsBox(owner->GetWidth()/2 , owner->GetHeight()/2);
+  dynamicBox.SetAsBox(owner->GetWidth() / 2 , owner->GetHeight() / 2);
 
   b2FixtureDef fixtureDef;
   fixtureDef.shape = &dynamicBox;
