@@ -18,6 +18,7 @@ public:
 private:
     void RenderHierarchy(SceneData &sceneData);
     void RenderTemplates(SceneData& sceneData);
+    void RenderBehaviorTree(SceneData& sceneData);
     
     GameObjectPropertiesRenderer gameObjectPropertiesRenderer;
     GameObjectData *dragSourceGameObject;

@@ -12,6 +12,7 @@ void InEditorRenderer::Render(SceneData &sceneData)
     gameViewPosition = ImGui::GetCursorScreenPos();
     RenderGamObjectProperties(sceneData);
     RenderHierarchy(sceneData);
+    RenderBehaviorTree(sceneData);
 
     int cameraOffsetX = 0;
     int cameraOffsetY = 0;
@@ -118,6 +119,12 @@ void InEditorRenderer::RenderTemplates(SceneData &sceneData)
         }
     }
 
+    ImGui::End();
+}
+void InEditorRenderer::RenderBehaviorTree(SceneData &sceneData)
+{
+    ImGui::Begin("BehaviorTree");
+    //TODO: render nodes
     ImGui::End();
 }
 void InEditorRenderer::RenderGamObjectProperties(SceneData &sceneData)

@@ -2,7 +2,7 @@
 #include "GoToTargetNode.h"
 #include "SequencerNode.h"
 #include "WaitNode.h"
-
+using namespace AIBehavior;
 AIBehavior::BehaviorTree::BehaviorTree()
 {
     m_Selector = std::make_unique<SelectorNode>();
@@ -30,4 +30,9 @@ AIBehavior::BehaviorTree::~BehaviorTree()
 void AIBehavior::BehaviorTree::Update(float deltaTime)
 {
     m_RootNode.Update(deltaTime);
+}
+
+NodeBase &AIBehavior::BehaviorTree::GetCurrentNode()
+{
+    //TODO: return current node
 }

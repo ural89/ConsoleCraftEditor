@@ -16,8 +16,11 @@ namespace AIBehavior
     public:
         BehaviorTree();
         ~BehaviorTree();
+    
         void Update(float deltaTime);
 
+    public:
+        NodeBase& GetCurrentNode(); 
     private:
         RootNode m_RootNode;
         std::unique_ptr<SelectorNode> m_Selector;
