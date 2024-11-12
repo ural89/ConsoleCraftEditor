@@ -24,3 +24,13 @@ struct SceneData
 {
     std::vector<GameObjectData *> GameObjectDatas;
 };
+
+struct BehaviorTreeNodeData
+{
+    int id = 0;
+    std::string name;
+    std::string script;
+    Vector2 position;
+    int parentId = -1;
+
+};
