@@ -4,6 +4,7 @@
 #include "IncludeComponents.h"
 #include "../Component/RigidbodyComponent.h"
 #include "../Component/PlayerController.h"
+#include "Core/Component/AI/BehaviorTreeComponent.h"
 #include "../ParticleSystem/ParticleSource.h"
 GameObject *GameObjectFactory::Create(const std::string &gameObjectName)
 {
@@ -48,7 +49,8 @@ void ComponentFactory::RegisterAllComponents(GameObject &ownerGameObject)
              { return new PlayerController(ownerGameObject); });
     Register("ParticleSource", [&ownerGameObject]()
              { return new ParticleSource(ownerGameObject); });
-             
+    Register("BehaviorTreeComponent", [&ownerGameObject]()
+             { return new BehaviorTreeComponent(ownerGameObject); });
              //this file is modified after added component
 #include "IncludeRegisterComponentList.h" 
 }
