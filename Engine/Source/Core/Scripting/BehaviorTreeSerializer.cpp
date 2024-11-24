@@ -43,4 +43,5 @@ bool BehaviorTreeSerializer::Deserialize(const std::string &json, std::vector<Be
         behaviorTreeNodeData->parentId = obj["parentId"].GetInt();
         behaviorTreeNodeDatas.push_back(behaviorTreeNodeData);
     }
+    return true;
 }

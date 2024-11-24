@@ -1,7 +1,7 @@
 #include "BehaviorTreeComponent.h"
 #include "Core/AIBehavior/BehaviorTree.h"
 #include "Core/AIBehavior/ActionNode.h"
-#include "Core/FileHandling/BehaviorTreeSerializer.h"
+#include "Core/Scripting/BehaviorTreeSerializer.h"
 void BehaviorTreeComponent::Init()
 {
     //TODO: serialize behavior tree

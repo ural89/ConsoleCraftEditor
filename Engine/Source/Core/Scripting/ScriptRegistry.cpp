@@ -72,5 +72,5 @@ void BehaviorTreeNodeFactory::Register(const std::string &nodeName, std::functio
 
 void BehaviorTreeNodeFactory::RegisterAllNodes()
 {
-    //TODO: register already created nodes
+    // Register("Selector")
 }
