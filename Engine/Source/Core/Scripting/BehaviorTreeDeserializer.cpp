@@ -1,7 +1,7 @@
-#include "BehaviorTreeSerializer.h"
+#include "BehaviorTreeDeserializer.h"
 #include <vector>
 
-bool BehaviorTreeSerializer::Deserialize(const std::string &json, std::vector<BehaviorTreeNodeData *> &behaviorTreeNodeDatas)
+bool BehaviorTreeDeserializer::Deserialize(const std::string &json, std::vector<BehaviorTreeNodeData *> &behaviorTreeNodeDatas)
 {
     std::ifstream file(json);
     if (!file.is_open())

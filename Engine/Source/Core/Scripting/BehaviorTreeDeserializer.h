@@ -9,9 +9,9 @@
 
 using namespace rapidjson;
 
-class BehaviorTreeSerializer
+class BehaviorTreeDeserializer
 {
 public:
-    BehaviorTreeSerializer(){};
+    BehaviorTreeDeserializer(){};
     bool Deserialize(const std::string &json, std::vector<BehaviorTreeNodeData*> &behaviorTreeNodeData);
 };

@@ -1,11 +1,16 @@
 #include "BehaviorTreeComponent.h"
 #include "Core/AIBehavior/BehaviorTree.h"
 #include "Core/AIBehavior/ActionNode.h"
-#include "Core/Scripting/BehaviorTreeSerializer.h"
+#include "Core/Scripting/BehaviorTreeDeserializer.h"
+#include <filesystem>
 void BehaviorTreeComponent::Init()
 {
     //TODO: serialize behavior tree
-    BehaviorTreeSerializer btSerializer;
+	std::string projectsFolder = std::filesystem::current_path().parent_path().string();
+    BehaviorTreeDeserializer btDeserializer;
+    std::vector<BehaviorTreeNodeData*> btNodeDatas;
+    btDeserializer.Deserialize(projectsFolder + "/BTData", btNodeDatas);
+    std::cout << "Data is: " << btNodeDatas[0]->name << '\n';
     // btSerializer.
     auto root = std::make_shared<SelectorNode>("Selector 1");
 
