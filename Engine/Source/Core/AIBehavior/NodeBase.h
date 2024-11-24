@@ -15,8 +15,8 @@ enum class NodeStatus
 class BehaviorTreeNode
 {
 public:
-    BehaviorTreeNode(const std::string &&name) : name(name) {}
-    BehaviorTreeNode(const std::string &name) : name(name) {}
+    BehaviorTreeNode() {}
+    // BehaviorTreeNode() {}
 
 protected:
     NodeStatus status;
@@ -25,7 +25,7 @@ protected:
 public:
     virtual ~BehaviorTreeNode() = default;
 
-    virtual NodeStatus Update() = 0;
+    virtual NodeStatus Update() {return NodeStatus::Inactive;}
 
     NodeStatus getStatus() const { return status; }
 

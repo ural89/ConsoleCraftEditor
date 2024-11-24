@@ -3,7 +3,7 @@
 
 class ActionNode : public BehaviorTreeNode {
 public:
-    ActionNode(const std::string &name) : BehaviorTreeNode(name){}
+    ActionNode() : BehaviorTreeNode(){}
     NodeStatus Update() override {
         // Define the specific action here
         status = NodeStatus::Success; // or Failure or Running depending on the action
@@ -13,7 +13,7 @@ public:
 
 class FailNode : public BehaviorTreeNode {
 public:
-    FailNode(const std::string &name) : BehaviorTreeNode(name){}
+    FailNode() : BehaviorTreeNode(){}
     NodeStatus Update() override {
         // Define the specific action here
         status = NodeStatus::Failure; // or Failure or Running depending on the action
@@ -24,7 +24,7 @@ public:
 
 class ConditionNode : public BehaviorTreeNode {
 public:
-    ConditionNode(const std::string &name) : BehaviorTreeNode(name) {}
+    ConditionNode() : BehaviorTreeNode() {}
     NodeStatus Update() override {
         // Define the specific condition check here
         status = NodeStatus::Success; // or Failure depending on the condition

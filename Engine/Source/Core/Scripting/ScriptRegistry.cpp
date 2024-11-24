@@ -55,7 +55,7 @@ void ComponentFactory::RegisterAllComponents(GameObject &ownerGameObject)
 #include "IncludeRegisterComponentList.h" 
 }
 
-BehaviorTreeNode *BehaviorTreeNodeFactory::Create(const std::string &nodeName)
+std::shared_ptr<BehaviorTreeNode> BehaviorTreeNodeFactory::Create(const std::string &nodeName)
 {
     auto it = creatorMap.find(nodeName);
     if (it != creatorMap.end())
@@ -65,12 +65,15 @@ BehaviorTreeNode *BehaviorTreeNodeFactory::Create(const std::string &nodeName)
     return nullptr;
 }
 
-void BehaviorTreeNodeFactory::Register(const std::string &nodeName, std::function<BehaviorTreeNode *()> creator)
+void BehaviorTreeNodeFactory::Register(const std::string &nodeName, std::function<std::shared_ptr<BehaviorTreeNode> ()> creator)
 {
     creatorMap[nodeName] = creator;
 }
 
 void BehaviorTreeNodeFactory::RegisterAllNodes()
 {
-    // Register("Selector")
+    Register("Selector", []() 
+    {
+        return  std::make_shared<SelectorNode>();
+    });
 }

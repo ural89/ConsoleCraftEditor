@@ -4,7 +4,7 @@ class CompositeNode : public BehaviorTreeNode
 {
 protected:
 public:
-    CompositeNode(const std::string &name) : BehaviorTreeNode(name) {}
+    CompositeNode() {}
     std::vector<std::shared_ptr<BehaviorTreeNode>> children;
     void addChild(std::shared_ptr<BehaviorTreeNode> child)
     {
@@ -15,7 +15,7 @@ public:
 class SequenceNode : public CompositeNode
 {
 public:
-    SequenceNode(const std::string &name) : CompositeNode(name) {}
+    SequenceNode() : CompositeNode() { name = "SequenceNode";}
     NodeStatus Update() override
     {
         status = NodeStatus::Running;
@@ -36,7 +36,7 @@ public:
 class SelectorNode : public CompositeNode
 {
 public:
-    SelectorNode(const std::string& name) : CompositeNode(name){}
+    SelectorNode() : CompositeNode(){name = "SelectorNode";}
     NodeStatus Update() override
     {
         status = NodeStatus::Running;

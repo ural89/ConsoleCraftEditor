@@ -3,6 +3,7 @@
 #include "Core/AIBehavior/BehaviorTree.h"
 #include <map>
 #include <functional>
+#include <memory>
 class GameObjectFactory
 {
 public:
@@ -28,9 +29,9 @@ private:
 class BehaviorTreeNodeFactory
 {
 public:
-    BehaviorTreeNode *Create(const std::string &nodeName);
-    void Register(const std::string &nodeName, std::function<BehaviorTreeNode *()> creator);
+    std::shared_ptr<BehaviorTreeNode> Create(const std::string &nodeName);
+    void Register(const std::string &nodeName, std::function<std::shared_ptr<BehaviorTreeNode> ()> creator);
     void RegisterAllNodes();
 private:
-    std::map<std::string, std::function<BehaviorTreeNode *()>> creatorMap;
+    std::map<std::string, std::function<std::shared_ptr<BehaviorTreeNode> ()>> creatorMap;
 };
