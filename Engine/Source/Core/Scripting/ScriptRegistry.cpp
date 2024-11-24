@@ -54,3 +54,23 @@ void ComponentFactory::RegisterAllComponents(GameObject &ownerGameObject)
              //this file is modified after added component
 #include "IncludeRegisterComponentList.h" 
 }
+
+BehaviorTreeNode *BehaviorTreeNodeFactory::Create(const std::string &nodeName)
+{
+    auto it = creatorMap.find(nodeName);
+    if (it != creatorMap.end())
+    {
+        return it->second();
+    }
+    return nullptr;
+}
+
+void BehaviorTreeNodeFactory::Register(const std::string &nodeName, std::function<BehaviorTreeNode *()> creator)
+{
+    creatorMap[nodeName] = creator;
+}
+
+void BehaviorTreeNodeFactory::RegisterAllNodes()
+{
+    //TODO: register already created nodes
+}

@@ -1,8 +1,12 @@
 #include "BehaviorTreeComponent.h"
 #include "Core/AIBehavior/BehaviorTree.h"
 #include "Core/AIBehavior/ActionNode.h"
+#include "Core/FileHandling/BehaviorTreeSerializer.h"
 void BehaviorTreeComponent::Init()
 {
+    //TODO: serialize behavior tree
+    BehaviorTreeSerializer btSerializer;
+    // btSerializer.
     auto root = std::make_shared<SelectorNode>("Selector 1");
 
     auto sequence1 = std::make_shared<SequenceNode>("Sequence 1");

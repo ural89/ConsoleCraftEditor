@@ -1,1 +1,1 @@
-["PlayerController", "RigidbodyComponent", "ParticleSource"]
+["PlayerController", "RigidbodyComponent", "ParticleSource", "BehaviorTreeComponent"]

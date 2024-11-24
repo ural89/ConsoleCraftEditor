@@ -135,6 +135,7 @@ void Scene::CreateGameObjectsFromSceneData(const std::string &sceneName) // DONT
 	std::vector<GameObject *> createdGameObjects;
 	GameObjectFactory factory;
 	ComponentFactory componentFactory;
+	BehaviorTreeNodeFactory btNodeFactory;
 	currentSceneName = sceneName; //TODO: create a setter for this
 	// Register creators for game objects
 	factory.RegisterAllObjects(*this);
