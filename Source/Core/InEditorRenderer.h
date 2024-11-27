@@ -2,6 +2,8 @@
 #include "Core/DataStructs.h"
 #include "imgui.h"
 #include "GameObjectPropertiesRenderer.h"
+#include "BehaviorTreeRenderer.h"
+
 class InEditorRenderer
 {
 public:
@@ -21,6 +23,7 @@ private:
     void RenderBehaviorTree(SceneData& sceneData);
     
     GameObjectPropertiesRenderer gameObjectPropertiesRenderer;
+    BehaviorTreeRenderer behaviorTreeRenderer;
     GameObjectData *dragSourceGameObject;
     
     float xOffset = 0;

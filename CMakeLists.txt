@@ -39,6 +39,7 @@ set(SOURCES
     Source/Core/ProjectManager.cpp
     Source/Core/FileHandling/FileHandler.cpp
     Source/Core/FileHandling/SceneDataSerializer.cpp
+    Source/Core/BehaviorTreeRenderer.cpp
 
 
     #imgui
