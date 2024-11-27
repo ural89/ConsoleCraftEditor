@@ -12,6 +12,7 @@ void InEditorRenderer::Render(SceneData &sceneData)
     gameViewPosition = ImGui::GetCursorScreenPos();
     RenderGamObjectProperties(sceneData);
     RenderHierarchy(sceneData);
+    RenderBehaviorTree(sceneData);
 
     int cameraOffsetX = 0;
     int cameraOffsetY = 0;
@@ -79,7 +80,6 @@ void InEditorRenderer::Render(SceneData &sceneData)
             }
         }
     }
-    RenderBehaviorTree(sceneData);
 }
 
 void InEditorRenderer::RenderTemplates(SceneData &sceneData)
@@ -127,7 +127,7 @@ void InEditorRenderer::RenderBehaviorTree(SceneData &sceneData)
     BehaviorTreeNodeData btNodeData;
     btNodeData.id = 0;
     btNodeData.name = "Selector";
-    btNodeData.position = Vector2(5, 5);
+    btNodeData.position = Vector2(125, 5);
     btNodeData.script = "";
     std::vector<BehaviorTreeNodeData*> btNodeDatas;
     btNodeDatas.push_back(&btNodeData);
