@@ -6,6 +6,7 @@
 #include "../Component/PlayerController.h"
 #include "Core/Component/AI/BehaviorTreeComponent.h"
 #include "../ParticleSystem/ParticleSource.h"
+#include "Core/AIBehavior/ActionNode.h"
 GameObject *GameObjectFactory::Create(const std::string &gameObjectName)
 {
     auto it = creatorMap.find(gameObjectName);
@@ -72,6 +73,18 @@ void BehaviorTreeNodeFactory::Register(const std::string &nodeName, std::functio
 
 void BehaviorTreeNodeFactory::RegisterAllNodes()
 {
+    Register("ActionNode", []() 
+    {
+        return  std::make_shared<ActionNode>();
+    });
+    Register("FailNode", []() 
+    {
+        return  std::make_shared<FailNode>();
+    });
+    Register("Sequence", []() 
+    {
+        return  std::make_shared<SequenceNode>();
+    });
     Register("Selector", []() 
     {
         return  std::make_shared<SelectorNode>();

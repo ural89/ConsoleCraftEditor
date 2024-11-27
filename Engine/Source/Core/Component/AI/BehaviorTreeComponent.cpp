@@ -13,8 +13,8 @@ void BehaviorTreeComponent::Init()
     std::vector<BehaviorTreeNodeData*> btNodeDatas;
     btDeserializer.Deserialize(projectsFolder + "/BTData", btNodeDatas);
     std::cout << "Data is: " << btNodeDatas[0]->name << '\n';
-
-    auto root = (btNodeFactory.Create("Selector"));//std::make_shared<SelectorNode>("Selector 1");
+    auto deserializedNode = btNodeFactory.Create(btNodeDatas[0]->name);
+    auto root = (deserializedNode);//std::make_shared<SelectorNode>("Selector 1");
     // auto root = std::make_shared<SelectorNode>();
 
     // auto sequence1 = std::make_shared<SequenceNode>("Sequence 1");
